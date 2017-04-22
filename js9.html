@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+</head>
+<style>
+    body{
+    	padding:0px;
+    	margin: 0px;
+    	width: 100%;
+    	height:100%;
+    }
+    div{
+    	margin:10px;
+    }
+    .main{
+    	display: flex;
+    	width:750px;
+    	height:200px;
+    	border:0;
+      border:1px solid red;
+    }
+    .main div{
+    	border:1px solid red;
+    	margin:8px;
+    	padding:5px;
+    	background-color:antiquewhite; 
+    }
+    .tree{
+    	display:flex;
+
+    }
+</style>
+<body>
+<div class="main">
+</div>
+<div>
+	<input type="button" value="添加" class="btn">
+  <input type="button" value="删除" class="btn">
+</div>
+<div>
+	<input type="text" class="txt">
+</div>
+<script type="text/javascript">
+
+window.onload=function(){
+var main=document.getElementsByClassName("main")[0];
+var btn=document.getElementsByClassName("btn");
+var txt=document.getElementsByClassName("txt")[0];
+var div=document.getElementsByTagName("div")
+var mainchoose="";
+var child="";
+
+  function nodelis(){  
+  var mainchild=document.createElement("div");  
+  var childlist=""
+/*      var childchoose=function(){
+            mainchoose=mainchoose.appendChild(mainchild);
+     }*/
+
+
+     if (txt.value) {
+         mainchild.innerText=txt.value;
+         txt.value='';
+     }else{
+          mainchild.innerText='节点';
+    }
+    if(!mainchoose){
+      main.appendChild(mainchild);
+      childlist=main.getElementsByTagName("div");
+    }else{
+      childchoose().style.backgroundColor="antiquewhite"
+      childchoose().appendChild(mainchild); 
+      childlist=childchoose().getElementsByTagName("div");
+      mainchoose=""
+      childlist=main.getElementsByTagName("div");
+    }
+/*        for(var i=0;i< childlist.length;i++){
+          (function(n){
+              childlist[i].addEventListener("click",minson);
+          })(i);
+      } */
+      for(var i=0;i< childlist.length;i++){
+        (function(n){
+            childlist[n].onclick = function (e) {
+              minson(childlist[n]);
+              console.log(childlist[n]);
+              console.log(n);
+              e.stopPropagation();
+              //该方法将停止事件的传播，阻止它被分派到其他 Document 节点。在事件传播的任何阶段都可以调用它。注意，虽然该方法不能阻止同一个 Document 节点上的其他事件句柄被调用，但是它可以阻止把事件分派到其他节点。
+            }
+        })(i);
+      } 
+      function minson(a) {
+        a.style.backgroundColor="red" 
+        mainchoose=a
+        console.log(a)
+        childchoose=function(){
+          return a
+        }
+    } 
+    
+  }
+
+/*   */
+     btn[0].addEventListener("click",nodelis);
+     btn[1].addEventListener("click",function(){
+       console.log(childchoose())
+       while(childchoose().hasChildNodes()){
+        childchoose().removeChild(childchoose().firstChild)
+       } 
+       childchoose().parentNode.removeChild(childchoose())
+     })
+    
+ }
+</script>7
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+<meta charset="utf-8"></meta>  
+    <title>html基础</title> 
+    <style>
+    div{
+    	border:1px solid #999;
+    	overflow:auto;
+    }
+    p{
+    	font-size:12px;
+    }
+/*position定位*/
+    .pbody{
+    	margin:20px 20px;
+    	position: relative;
+    	background:#eee;
+    	min-height:460px;
+    	width:auto;
+    }
+    .pchild{
+    	position:absolute;
+    	top:20px;
+    	left:240px;
+    }
+    .plog{
+    	position: absolute;
+    	top:20px;
+    	left:20px;
+    	min-height:120px;
+    	width:200px;
+    }
+    .plog div{
+    	position: absolute;
+    	top:20px;
+    	left:20px;
+    	width:80px;
+    	height:80px;
+    }
+    .pchild{
+    	position: absolute;
+    	top:20px;
+    	left:240px;
+    	right:160px;
+    	height:auto;
+    	width:auto;
+    }
+   	.pchild div{
+   		margin:20px 20px;
+   		border:0;
+   	} 
+    .pmorelog{
+    	position: absolute;
+    	top:20px;
+    	right:20px;
+    	width:120px;
+    	min-height:420px;
+    }
+    .pmorelog div{
+    	position: absolute;
+    	width:80px;
+    	height:80px;
+    	left:20px;
+    }
+    .pmorelog .plog1{
+    	top:20px;
+    	
+    }
+    .pmorelog .plog2{
+    	top:120px;
+    }
+    .pmorelog .plog3{
+    	top:220px;
+    }
+    .pmorelog .plog4{
+    	top:320px;
+    }
+/*float浮动定位*/
+	.fbody{
+		margin:20px 20px;
+		background:#eee;
+    	min-height:460px;
+	}
+	.fbody div{
+	
+		margin:20px 20px;
+	}
+	.flog{
+		float:left;
+		width:200px;
+		height:auto;
+	}
+	.flog div{
+		width:80px;
+		height:80px;
+	}
+	.fbody .fcenter{
+		margin:20px 160px 0 240px;
+	}
+	.fcenter div{
+		border:0;
+	}
+	.fbody .fmorelog{
+		float:right;
+		width:120px;
+		height:auto;
+	}
+	.flog1{
+		width:80px;
+		height:80px;
+	}
+    </style>
+</head>
+<body>
+<div class="pbody">
+	<div class="plog">
+		<div>
+		</div>
+	</div>
+	<div class="pchild">
+		<div>
+			<p>关于你们团队的介绍。</br>可以给我们解释一下团队名称的来历，或是分别介绍你们团队的成员</br>(以下为示例)</br>百度WEB前段技术学院(Baidu Institute of Front-End Technology简称IFE)是一个由百度人力组员部校园招聘组、百度EFE团队联合出品的、面向在校大学生一级对前段技术有兴趣的前段在线学习平台</br>百度WEB前段技术学院(Baidu Institute of Front-End Technology简称IFE)是一个由百度人力组员部校园招聘组、百度EFE团队联合出品的、面向在校大学生一级对前段技术有兴趣的前段在线学习平台</br>百度WEB前段技术学院(Baidu Institute of Front-End Technology简称IFE)是一个由百度人力组员部校园招聘组、百度EFE团队联合出品的、面向在校大学生一级对前段技术有兴趣的前段在线学习平台</br>百度WEB前段技术学院(Baidu Institute of Front-End Technology简称IFE)是一个由百度人力组员部校园招聘组、百度EFE团队联合出品的、面向在校大学生一级对前段技术有兴趣的前段在线学习平台
+		</div>
+	</div>
+	<div class="pmorelog">
+		<div class="plog1">
+		</div>
+		<div class="plog2" >
+		</div>
+		<div class="plog3" >
+		</div>
+		<div class="plog4" >
+		</div>
+	</div>
+</div>
+<div class="fbody">
+		<div class="flog">
+			<div>
+			</div>
+		</div>
+		<div class="fmorelog">
+			<div class="flog1">
+			</div>
+			<div class="flog1" >
+			</div>
+			<div class="flog1" >
+			</div>
+			<div class="flog1" >
+			</div>
+		</div>
+		<div class="fcenter">
+			<div>
+			<p>关于你们团队的介绍。</br>可以给我们解释一下团队名称的来历，或是分别介绍你们团队的成员</br>(以下为示例)</br>百度WEB前段技术学院(Baidu Institute of Front-End Technology简称IFE)是一个由百度人力组员部校园招聘组、百度EFE团队联合出品的、面向在校大学生一级对前段技术有兴趣的前段在线学习平台</br>百度WEB前段技术学院(Baidu Institute of Front-End Technology简称IFE)是一个由百度人力组员部校园招聘组、百度EFE团队联合出品的、面向在校大学生一级对前段技术有兴趣的前段在线学习平台</br>百度WEB前段技术学院(Baidu Institute of Front-End Technology简称IFE)是一个由百度人力组员部校园招聘组、百度EFE团队联合出品的、面向在校大学生一级对前段技术有兴趣的前段在线学习平台</br>百度WEB前段技术学院(Baidu Institute of Front-End Technology简称IFE)是一个由百度人力组员部校园招聘组、百度EFE团队联合出品的、面向在校大学生一级对前段技术有兴趣的前段在线学习平台
+			</div>
+		</div>
+
+</div>
+</body>
+</html>

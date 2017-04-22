@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+ <style>
+  ul{
+    list-style: none;
+  }
+  ul li{
+    display: block;
+    margin-left:20px;
+    float:left;
+    background:red;
+    vertical-align: middle;
+    line-height: 40px;
+    text-align: center;
+    width:40px;
+    height:40px;
+    font-weight: bold;
+    color:#FFF;
+  }
+  </style>
+  </head>
+
+  <body>
+
+<label>请输入数字：</label>
+<textarea id="aqi-textarea" rows="8" cols="50"></textarea>
+<div>
+	<button >左侧入</button>
+	<button >右侧入</button>
+	<button >左侧出</button>
+	<button >右侧出</button>
+</div>
+<div>
+<input id="aqi-input" type="text"><button>查询</button>
+</div>
+<ul id="list">
+</ul>
+
+<script type="text/javascript">
+var textarea=document.getElementById("aqi-textarea");
+var button=document.getElementsByTagName("button");
+var ul=document.getElementById("list");
+var li=ul.getElementsByTagName("li");
+var input=document.getElementById("aqi-input");
+(function() {
+	button[0].onclick=function(){
+			var len=content().length;
+			for(var i=0;i<len;i++){
+				ul.insertBefore(document.createElement("li"),li[0]).innerHTML=content()[i];
+			}	
+	}
+	button[1].onclick=function(){
+			var len=content().length;
+			for(var i=0;i<len;i++){
+				ul.appendChild(document.createElement("li")).innerHTML=content()[i];
+			}	
+	}
+	button[2].onclick=function(){
+		 ul.removeChild(li[0]);  
+	}
+	button[3].onclick=function(){
+		 var sum=li.length-1;
+   		 ul.removeChild(li[sum]);
+	}
+	button[4].onclick=function(){
+		var inquiry;
+		var len=li.length;
+		var value=input.value;
+		for(var i=0;i<len;i++){
+			inquiry=li[i].innerHTML;
+			if(inquiry.indexOf(value)>-1){
+				li[i].style.backgroundColor="#67BF7F";
+			}else{
+				li[i].style.backgroundColor="red";
+			}
+		}
+	}
+})();
+
+function content(){
+	var value=textarea.value;
+	var arry=[];
+	if(!(code(value)==false)){
+		arry=value.split(String.fromCharCode(code(value)))
+	}else{
+		arry=value;
+	}
+	return arry;
+}
+function code(value){
+	var len=value.length;
+	for(var i=0;i<len;i++){
+  		var codeval=value.charCodeAt(i); 
+  		if(codeval<48 || (codeval>56&&codeval<97)){
+  			return codeval;
+  		}
+  	}
+}
+</script>
+</body>

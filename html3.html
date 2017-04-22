@@ -1,0 +1,50 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+<meta charset="utf-8"></meta>  
+    <title>html基础</title> 
+    <style>
+    html,body{
+    	height:100%;
+    	width:100%;
+    	padding: 0;
+    	margin: 0;
+    }
+    .page{
+    	position: relative;
+    	top:50%;
+    	width:400px;
+    	height:200px;
+    	background:#CCC;
+    	margin:0 auto;
+    	transform: translateY(-50%);
+    }
+    .log1{
+    	position:absolute;
+    	top:0;
+    	left:0;
+    	width:50px;
+    	height:50px;
+    	background:#fc0;
+    	border-radius:0 0 50px 0;
+    }
+    .log2{
+    	position: absolute;
+    	right:0;
+    	bottom:0;
+    	width:50px;
+    	height:50px;
+    	background:#fc0;
+    	border-radius:50px 0 0 0;
+    }
+    </style>
+</head>
+<body>
+	<div class="page">
+		<div class="log1">
+		</div>
+		<div class="log2">
+		</div>
+	</div>
+</body>
+</head>

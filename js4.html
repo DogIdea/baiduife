@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+  </head>
+  <style>
+  #number{
+    list-style: none;
+  }
+  #number li{
+    display: block;
+    margin-left:20px;
+    float:left;
+    background:red;
+    vertical-align: middle;
+    line-height: 40px;
+    text-align: center;
+    width:40px;
+    height:40px;
+    font-weight: bold;
+    color:#FFF;
+  }
+  </style>
+<body>
+
+<label>请输入数字：<input id="aqi-input" type="text"></label>
+<button >左侧入</button>
+<button >右侧入</button>
+<button >左侧出</button>
+<button >右侧出</button>
+<ul id="number">
+  <li>10</li>
+  <li>3</li>
+  <li>7</li>
+  <li>12</li>
+  <li>11</li>
+  <li>30</li>
+</ul>
+<ul id="resort">
+</ul>
+<script type="text/javascript">
+var input=document.getElementById("aqi-input");
+var button=document.getElementsByTagName("button");
+var ul=document.getElementById("number");
+var li=ul.getElementsByTagName("li");
+(function() {
+  button[0].onclick=function(){
+    if(!isNaN(input.value)){
+      ul.appendChild(document.createElement("li")).innerHTML=input.value;
+    }
+    else{
+      alert("请输入数字");
+      input.value="";
+    }
+  }
+  button[1].onclick=function(){
+    if(!isNaN(input.value)){
+     ul.insertBefore(document.createElement("li"),li[0]).innerHTML=input.value;
+    }
+    else{
+      alert("请输入数字");
+      input.value="";
+    }
+    
+  }
+  button[2].onclick=function(){
+    alert(li[0].innerHTML);
+    ul.removeChild(li[0]);  
+  }
+  button[3].onclick=function(){
+    var sum=li.length-1;
+    alert(li[sum].innerHTML);
+    ul.removeChild(li[sum]);
+  }
+  for(var i=0;i<li.length;i++){
+    li[i].addEventListener( "click",function(){
+      ul.removeChild(this);
+      alert(this.innerHTML);
+    });
+  }
+  
+})();
+</script>
+</body>
+</html>

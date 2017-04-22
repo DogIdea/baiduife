@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+</head>
+<style>
+    body{
+    	padding:0px;
+    	margin: 0px;
+    	width: 100%;
+    	height:100%;
+    }
+    div{
+    	margin:10px;
+    }
+    .main{
+    	display: flex;
+    	width:750px;
+    	height:200px;
+    	border:1px solid red;
+    	border:0;
+    }
+    .main div{
+    	border:1px solid red;
+    	margin:8px;
+    	padding:5px;
+    	background-color:antiquewhite; 
+    }
+    .tree{
+    	display:flex;
+
+    }
+</style>
+<body>
+<div class="main">
+  <div class="tree">
+  0
+  	<div class="tree">
+  		1
+  		<div class="tree">
+  		2
+  			 <div class="tree">
+  			 3
+  			</div>
+  			<div class="tree">
+  			4
+  			</div>
+  		</div>
+  		<div class="tree">
+  		over
+  		  	<div class="tree">
+  		  	day
+  			</div>
+  			<div class="tree">
+  			7
+  			</div>
+  		</div>
+  	</div>
+  	<div class="tree">
+  	apple
+  	</div>
+  	<div class="tree">
+  	replace
+  		<div class="tree">
+  		9
+  		    <div class="tree">
+  		    10
+  			</div>
+  			<div class="tree">
+  			15
+  			</div>
+  		</div>
+  		<div class="tree">
+  		12
+  		  	<div class="tree">
+  		  	13
+  			</div>
+  			<div class="tree">
+  			14
+  			</div>
+  		</div>
+  	</div>
+  </div>
+</div>
+<div>
+	<input type="button" value="前序查询" class="btn">
+</div>
+<div>
+	<input type="text" class="txt">
+</div>
+<script type="text/javascript">
+(function(){
+  var tree=document.getElementsByClassName("tree");
+  var btn=document.getElementsByClassName("btn");
+  var timer=[];
+  var isStart=false;
+  var isT=true;
+  var counter = 0;
+  //前序遍历
+  			function content(nodes){
+  				var txt=document.getElementsByClassName("txt")[0].value;
+  				var nodestxt=""
+  				for(var i=0;i<txt.length;i++){
+  					nodestxt=nodestxt + nodes.innerText[i];
+  				}
+  				if(txt==nodestxt && txt.length>0){
+  					return true
+  				}else{
+  					return false
+  				}
+  			} 
+            function show(nodes) {
+	            if(content(nodes[counter])){
+	            	nodes[counter].style.backgroundColor = 'red';
+	            	counter=tree.length;
+	            }else{
+	            	nodes[counter].style.backgroundColor = 'blue';
+	                var num = counter;
+	                counter++;
+	                timer[num] = setTimeout(function() {
+	                    nodes[num].style.backgroundColor = 'antiquewhite';
+	                }, 500);
+	            }
+            }
+
+            function showFn(nodes) {
+                show(nodes);
+                if (counter < nodes.length) {
+                    setTimeout(function(){
+                        showFn(nodes);
+                    }, 500)
+                } else {
+                    counter = 0;
+                    isStart = false;
+                    setTimeout(function(){
+                        alert('遍历结束');
+                    }, 1000);
+                }
+            }
+            btn[0].addEventListener('click', function() {
+                if (!isStart) {
+                    showFn(tree);
+                    isStart = true;
+                } else {
+                    alert('动画运行中');
+                }
+            });
+	btn[2].addEventListener('click', function() {
+                if (!isStart) {
+                    var s= showLn();
+                    showFn(s);
+                    isStart = true;
+                } else {
+                    alert('动画运行中');
+                }
+            });
+})();
+</script>
+</body>
+</html>

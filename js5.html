@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+  </head>
+  <style>
+  ul{
+    list-style: none;
+  }
+  ul li{
+    display: block;
+    margin-left:20px;
+    float:left;
+    background:red;
+    vertical-align: middle;
+    line-height: 40px;
+    text-align: center;
+    width:40px;
+    height:40px;
+    font-weight: bold;
+    color:#FFF;
+  }
+  </style>
+<body>
+
+<label>请输入数字：<input id="aqi-input" type="text"></label>
+<button >左侧入</button>
+<button >右侧入</button>
+<button >左侧出</button>
+<button >右侧出</button>
+<button id="sort-btn">排序</button>
+<ul id="number">
+  <li>10</li>
+  <li>3</li>
+  <li>7</li>
+  <li>12</li>
+  <li>11</li>
+  <li>30</li>
+</ul>
+<ul id="resort">
+
+</ul>
+
+<script type="text/javascript">
+var input=document.getElementById("aqi-input");
+var button=document.getElementsByTagName("button");
+var ul=document.getElementById("number");
+var li=ul.getElementsByTagName("li");
+var ull=document.getElementById("resort");
+(function() {
+    for(var i=0;i<li.length;i++){
+     li[i].style.height=li[i].innerHTML+"px";
+    }
+  button[0].onclick=function(){
+    if(li.length<10){
+      if(!isNaN(input.value)&&input.value>=10&&input.value<=100){
+        ul.appendChild(document.createElement("li")).innerHTML=input.value;
+        li[li.length-1].style.height=input.value+"px";
+      }
+      else{
+        alert("请输入数字");
+        input.value="";
+      }
+    }
+    else{
+      alert("已超过输入数量");
+    }
+  }
+  button[1].onclick=function(){
+    if(li.length<10){
+        if(!isNaN(input.value)&&input.value>=10&&input.value<=100){
+         ul.insertBefore(document.createElement("li"),li[0]).innerHTML=input.value;
+         li[0].style.height=input.value+"px";
+        }
+        else{
+          alert("请输入数字");
+          input.value="";
+        }
+    }
+    else{
+      alert("已超过输入数量");
+    }
+  }
+  button[2].onclick=function(){
+    alert(li[0].innerHTML);
+    ul.removeChild(li[0]);  
+  }
+  button[3].onclick=function(){
+    var sum=li.length-1;
+    alert(li[sum].innerHTML);
+    ul.removeChild(li[sum]);
+  }
+  for(var i=0;i<li.length;i++){
+    li[i].addEventListener( "click",function(){
+      ul.removeChild(this);
+      alert(this.innerHTML);
+    });
+  }
+  button[4].onclick=function(){
+    getclick();
+  }
+})();
+function getclick(){
+   var lii=ull.getElementsByTagName("li");
+    if(ull.getElementsByTagName("li").length==0){
+        btnHandle();
+    }
+    else{     
+      for(var i = lii.length - 1; i >= 0; i--){
+        ull.removeChild(lii[i]);
+      }
+      btnHandle();
+    }
+  }
+function getData() {
+var data=[];
+for(var i=0;i<li.length;i++){
+  data.push(li[i].innerHTML);
+}
+  return data;
+
+}
+function sortAqiData(data) {
+    for(var i=0;i<data.length-1;i++){
+      for(var j=0;j<data.length-i-1;j++){
+       if(data[j]-0>data[j+1]-0){
+        var swap=data[j]-0;
+        data[j]=data[j+1];
+        data[j+1]=swap;
+       }
+      }
+   }
+   return data;
+}
+function render(data) {
+  data.forEach(function(element, index, array){
+      ull.appendChild(document.createElement("li")).innerHTML+=element;
+   });
+  return data
+}
+function btnHandle() {
+  var aqiData = getData();
+  aqiData = sortAqiData(aqiData);
+  render(aqiData);
+  var lii=ull.getElementsByTagName("li");
+   for(var i=0;i<lii.length;i++){
+          lii[i].style.height=lii[i].innerHTML+"px";
+  }
+}
+</script>
+</body>
+</html>

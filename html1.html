@@ -1,0 +1,353 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>  
+<meta charset="utf-8"></meta>  
+    <title>html基础</title> 
+    <style>
+    body{
+    	margin:0;
+    	padding:0;
+    	background:#b0b0b0;
+    }
+    p{
+    	font-size:12px;
+
+    }
+    h1{
+    	font-size:20px;
+    }
+    h2{
+    	font-size:15px;
+    }
+    a{
+    	text-decoration:none;
+    }
+    .left{
+    	float:left;
+    }
+    .right{
+ 
+    	float:right;
+    }
+    .title{
+    	text-align: center;
+    	border:1px solid;
+    	font-size:12px;
+    	width:100%;
+    	background:#363636;
+    	height:50px;
+    }
+    .title img{
+    	width:100px;
+    }
+    .title div{
+    	width:35%;
+    	height:100%;
+    	
+    }
+    .title ul li{
+    	
+    	margin-right:20px;
+    	float:left;
+    }
+    .title a{
+    	color:#FFF;
+    }
+    .title .import{
+    	color:#b0b0b0;
+    }
+    .body1{
+    	border:1px solid;
+    	margin:15px 10px;
+    	background:#FFF;
+    	font:#000;
+    	font-weight:bold;
+    	box-shadow: 0px 1px 2px #000;
+    }
+    .body1 div{
+    	line-height: 1.5em;
+    	margin:0 15px;
+    }
+    .body1 img{
+    	width:200px;
+    }
+    .body1 ul{
+    	text-align: left;
+    	font-size:13px;
+    	list-style:none;
+    }
+    .body1 .beautiful{
+    	width:150px;
+    	height:150px;
+    	line-height:1.2em;
+    	margin:10px;
+    	text-align: center;
+    	border:1px solid #363636;
+    }
+    .body1 .beautiful img{
+    	width:100px;
+    	height:100px;
+    }
+    .body1 .table-head{
+    	border:1px solid;
+    	margin:20px 15px;
+    }
+    .leftmenu{
+    	border-left:4px solid #b0b0b0;
+    	padding-left:20px;
+    }
+    table{
+    	font-size:15px;
+    	border-collapse: collapse;
+    	width: 100%;
+    	border:1px solid #b0b0b0;
+    	margin: 0 auto;
+    	table-layout:fixed;
+    }
+    td,th{
+    	text-align: left;
+    }
+    th{
+    	color:#FFF;
+    	background:#000;
+    	
+    }
+    .table-head tr:last-child{
+    	background:#b0b0b0;
+    }
+    input[type="text"]{
+    	width: 180px;
+    	border:1px solid #808080;
+    }
+    span{
+    	font-size:10px;
+    	color:#b0b0b0;
+    }
+    form{
+    	margin:15px 15px;
+    	font-size:12px;
+    }
+    form table{
+    	font-size:12px;
+    	border:0px;
+    	vertical-align: center;
+    	height:200px;
+    }
+    form tr td:first-child{
+    	text-align: right;
+    }
+    input[type="button"]{
+    	display:block;
+    	color:#FFF;
+    	font-size:25px;
+    	margin:0 auto;
+    	width:80%;
+    	background:#205AA7;
+    	height:50px;
+    }
+    </style>
+</head>
+<body>
+<div class="title">
+	<div class="left" style="margin:0 auto;">
+		<img src="img/log1.jpg">
+	</div >
+	<div class="right">
+		<ul>
+			<li><a href="#">导航链接一</a></li>
+			<li><a href="#">导航链接一</a></li>
+			<li><a href="#">导航链接一</a></li>
+			<li><a href="#" class="import">导航链接一</a></li>
+		</ul>
+	</div>
+</div>
+<div class="body1">
+	<div>
+		<h1>文章一级标题</h1>
+	</div>
+	<div>
+		<h2 class="import">文章二级标题</h2>
+	</div>
+	<div>
+	<p>这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落<strong>有个加粗字体</strong>这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落<a href="http://ife.baidu.com">这里有一个链接链接到http://ife.baidu.com</a>这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落该换行了<br>很长很长的段落这是一个很很长很长的段落这是一个很很长很长的段落这是一个很很长很长的段落这是一个很很长很长的段落这是一个很是一个很很长很长是一个很很长很长是一个很很长很长是一个很很长很长</p>
+	</div>
+	<div>
+		<img src="img/task.png">
+	</div>
+	<div>
+	<p>这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落<strong>有个加粗字体</strong>这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落<a href="http://ife.baidu.com">这里有一个链接链接到http://ife.baidu.com</a>这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落该换行了<br>很长很长的段落这是一个很很长很长的段落这是一个很很长很长的段落这是一个很很长很长的段落这是一个很很长很长的段落这是一个很是一个很很长很长是一个很很长很长是一个很很长很长是一个很很长很长</p>
+	</div>
+</div>
+<div class="body1">
+	<div>
+		<h1>文章一级标题</h1>
+	</div>
+	<div>
+		<h2 class="import">文章二级标题</h2>
+	</div>
+	<div>
+	<p>这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落<strong>有个加粗字体</strong>这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落<a href="http://ife.baidu.com">这里有一个链接链接到http://ife.baidu.com</a>这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落这是一个很长很长的段落该换行了<br>很长很长的段落这是一个很很长很长的段落这是一个很很长很长的段落这是一个很很长很长的段落这是一个很很长很长的段落这是一个很是一个很很长很长是一个很很长很长是一个很很长很长是一个很很长很长</p>
+	</div>
+	<div>
+		<img src="img/task.png">
+	</div>
+	<div>
+		<ul>
+			<li>项目列表一</li>
+			<li>项目列表一</li>
+			<li>项目列表一</li>
+		</ul>
+	</div>
+</div>
+<div class="body1">
+	<div>
+		<h1>图片</h1>
+	</div>
+	<div class="beautiful">
+		<p>好看的图片</p>
+		<img src="img/task.png">
+	</div>
+		<div class="beautiful">
+		<p>好看的图片</p>
+		<img src="img/task.png">
+	</div>
+		<div class="beautiful">
+		<p>好看的图片</p>
+		<img src="img/task.png">
+	</div>
+		<div class="beautiful">
+		<p>好看的图片</p>
+		<img src="img/task.png">
+	</div>
+		<div class="beautiful">
+		<p>好看的图片</p>
+		<img src="img/task.png">
+	</div>
+		<div class="beautiful">
+		<p>好看的图片</p>
+		<img src="img/task.png">
+	</div>
+		<div class="beautiful">
+		<p>好看的图片</p>
+		<img src="img/task.png">
+	</div>
+</div>
+<div class="body1">
+	<div>
+		<h1>最后一级标题</h1>
+	</div>
+	<div>
+		<h2 class="import">文章二级标题</h2>
+	</div>
+	<div>
+		<h3>文章作者 文章发表时间
+	</div>
+	<div>
+		<ol>
+			<li>排名1</li>
+			<li>排名1</li>
+			<li>排名1</li>
+		</ol>
+	</div>
+	<div  class="table-head">
+		<p>这是一个表格，给表格加了border</p>
+		<table border="1">
+		 <tr >
+		    <th>表头</th>
+		    <th>表头</th>
+		    <th>表头</th>
+		 </tr>
+		 <tr>
+		    <td>表内容单元格</td>
+		    <td>表内容单元格</td>
+		    <td><a href="#">操作</td>
+		 </tr>
+		 <tr>
+		    <td>表内容单元格</td>
+		    <td>表内容单元格</td>
+		    <td><a href="#">操作</td>
+		 </tr>
+		 <tr>
+		    <td>表内容单元格</td>
+		    <td>表内容单元格</td>
+		    <td><a href="#">操作</td>
+		 </tr>
+		  <tr>
+		    <td>表内容单元格</td>
+		    <td>表内容单元格</td>
+		    <td><a href="#">操作</td>
+		  </tr>
+		  <tr>
+		    <td>总计</td>
+		    <td colspan="2">1000</td>
+		  </tr>
+		</table>
+	</div>
+</div>
+<div class="body1">
+	<div class="leftmenu">
+		<h1>这里以后是一个侧栏，这是侧栏的标题</h1>
+	</div>
+	<div>
+		<form>
+			<table>
+				<tr>
+				    <td><label>请输入邮箱地址:</label></td>
+				    <td><input type="text" value="这是一个文本输入框"></td>
+				 </tr>
+				 <tr>
+				    <td><span>邮箱地址清按要求格式输入</span></td>
+				 </tr>
+				 <tr>
+				    <td><label>请输入密码：</label></td>
+				    <td><input type="text" value="这是一个文本输入框"></td>
+				 </tr>
+				  <tr>
+				    <td><label>请重复输入密码：</label></td>
+				    <td><input type="text" value="这是一个文本输入框"></td>
+				  </tr>
+				  <tr>
+				    <td><span>密码请为6-16位英文数字</span></td>
+				  </tr>
+				  <tr>
+				    <td><lable>性别：</lable></td>
+				    <td>
+				    	<input type="radio" name="sex1">男</input>
+						<input type="radio" name="sex1">女</input>
+					</td>
+				  </tr>
+				   <tr>
+				    <td><lable>城市：</lable></td>
+				    <td>
+				    	<select name=""> 
+							<option value="0">北京</option> 
+							<option value="1">杭州</option> 
+						</select> 
+				    </td>
+				  </tr>
+				  <tr>
+				    <td><lable>爱好：</lable></td>
+				    <td>
+				    	<input type="checkbox" >运动</input>
+						<input type="checkbox" >艺术</input>
+						<input type="checkbox" >科学</input>
+				    </td>
+				   </tr>
+				 	<tr>
+				    	<td><lable>个人描述：</lable></td>
+				    	<td>
+				    		<textarea rows="5" cols="50">
+							这是一个自动换行的文本输入框
+							</textarea>
+						</td>
+				  </tr>
+			</table>
+				<input type="button" value="提交按钮">
+		</form>
+	</div>
+</div>
+<div class="title">
+	<p>版权所有<p>
+</div>
+</body>
+</head>

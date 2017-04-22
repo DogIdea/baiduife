@@ -1,0 +1,106 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>  
+    <meta charset="utf-8"></meta>  
+    <title>雪碧图 </title>  
+    <script scr=""></script><script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>  
+    <link rel="stylesheet" href="style.css" type="text/css" />  
+    <style type="text/css">
+	input{
+ 	 margin:0;
+  	 display: none;
+	}
+	/*雪碧图*/
+	.xuebipicture label{
+		width:16px;
+		height:16px;
+		border:none;
+ 		 display: inline-block;
+		background:url('img/checked.png') no-repeat;
+	}
+	.xuebipicture .checkbox1+label{
+	  background-position:-25px -32px;
+	}
+	.xuebipicture .radio1+label{
+	  background-position: -24px -10px;
+	}
+	.xuebipicture .radio1:checked+label{
+		 background-position: -59px -10px;
+	}
+	.xuebipicture .checkbox1:checked+label{
+		background-position: -60px -32px;
+	}
+	/*伪类*/
+	.weilei input+label{
+		display: -webkit-flex;
+		display:flex;
+		border:1px solid #d9d9d9;
+		width:16px;
+		height: 16px;
+		
+	}
+	.weilei input:checked+label{
+		border:1px solid #d73d32;
+	} 
+	.weilei input[type="checkbox"]:checked+label::after{
+	  margin: auto;
+	  content: ' ';
+	  color: red;
+	  width:8px;
+	  height:8px;
+	  line-height: 8px;
+	  text-align: center;
+	  font-size: 12px;
+	  background: #d73d32;
+	}
+	.weilei input:checked+label{
+		border:1px solid #d73d32;
+	} 
+	.weilei:last-child{
+		display: -webkit-flex;
+		display:flex;
+  		width:50px;
+  		justify-content: space-between;
+	}
+	.weilei .radio2+label{
+		border-radius: 50%;
+	}
+	.weilei .radio2:checked+label::after{
+		border-radius: 50%;
+		margin:auto;
+		content:' ';
+		width:8px;
+		color: red;
+		height:8px;
+		line-height: 8px;
+		text-align: center;
+		font-size: 12px;
+		background: #d73d32;
+	}
+    </style> 
+    <body>  
+	<h1>雪碧图</h1>
+	<div class="xuebipicture">
+		<input type="checkbox" id="checkBox" class="checkbox1"></input>
+		<label class="zhezhao" for="checkBox"></label>
+	</div>
+	<div class="xuebipicture">
+		<input type="radio" id="radioBox" name="sex1" class="radio1"></input>
+		<label for="radioBox" ></label>
+		<input type="radio" id="radioBox1" name="sex1" class="radio1"></input>
+		<label for="radioBox1"></label>		
+	</div>
+	<h1>伪类</h1>
+	<div class="weilei">
+		<input type="checkbox" id="checkBox2" class="checkbox3"></input>
+		<label class="zhezhao" for="checkBox2"></label>
+	</div>
+	<div class="weilei">
+		<input type="radio" id="radioBox2" name="sex1" class="radio2"></input>
+		<label for="radioBox2" ></label>
+		<input type="radio" id="radioBox3" name="sex1" class="radio2"></input>
+		<label for="radioBox3"></label>		
+	</div>
+
+</body>  
+</html>  
