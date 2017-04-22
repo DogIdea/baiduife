@@ -1,0 +1,203 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+<meta charset="utf-8"></meta>  
+</head>
+<style>
+form{
+	display:flex;
+	flex-direction:  column;
+	flex-wrap:wrap
+	border:1px solid blue;
+	width:400px;
+	height:auto;
+	font-size: 12px;
+	font-weight: bold;
+}
+div{
+	height:50px;
+}
+label{
+	 display: inline-block;
+  width: 90px;
+  text-align: right;
+}
+input{
+	width:120px;
+	height:25px;
+}
+.Label{
+	width:180px;
+	text-align:center;
+	display:none;
+}
+form input[type="submit"]{
+	height:25px;
+}
+</style>
+<body>
+<div>
+  <form name="form" onsubmit="return validate_form()">
+    <div>  
+	  <label>用户名:</label> 
+	  <input type="text" class="txt">
+	  <label class="Label">必填，字符为4-16个字符</label>
+   </div>
+   <div>  
+	  <label>密码：</label>
+	  <input type="password" class="txt">
+	  <label class="Label">必填，字符为4-16个字符</label>
+   </div>  
+   <div>
+  	 <label>确认密码:</label>
+  	 <input type="password" class="txt">
+  	 <label class="Label">必填，字符为4-16个字符</label>
+  </div>
+  <div>
+	  <label>邮箱:</label>
+	  <input type="text" class="txt">
+	  <label class="Label">必填，字符为4-16个字符</label>
+  </div>
+  <div>
+	  <label>手机:</label>
+	  <input type="text" class="txt">
+	  <label class="Label">必填，字符为4-16个字符</label>
+  </div>
+ 	<input type="submit" value="验证">
+  </form>
+</div>
+<script type="text/javascript">
+var label=document.getElementsByClassName("Label");
+	function validate_form(){
+		var sum=0;
+		for(var i=0;i<label.length;i++){
+			if(label[i].innerHTML=="格式正确"){
+				sum=sum+1;
+			}else{
+				sum=0;
+			}
+		}
+			if(sum==5){
+				alert("验证成功");
+			}else{
+				alert("验证失败")
+			}	
+	}
+window.onload=function(){
+
+	var txt=document.getElementsByClassName("txt")
+	
+	for(var i=0;i<txt.length;i++){
+		(function(n){
+			txt[n].onfocus=function(){
+				var a=n;
+				console.log(a);
+				label[a].style.display="block";
+			}
+		})(i);	
+	}
+	function codefund(a){
+		var len=txt[a].value.length;
+		var sum=0;
+		if(txt[a].value){
+			for(var i=0;i<len;i++){
+				codeval=txt[a].value.charCodeAt(i);
+				if (codeval>=0x00 && 0xFF>=codeval){
+			        sum=sum+1;
+			  	} 
+			  	else
+  				{
+			       sum=sum+2;
+  				}
+  				if(sum>3 && sum<17){
+  					label[a].style.color="#67BF7F";
+  					label[a].innerHTML="格式正确";
+  					
+
+  				}else{
+  					label[a].style.color="#FF6666";
+  					label[a].innerHTML="格式错误";
+  				}
+
+			}
+		}
+	}
+	txt[0].onblur=function(){
+		if(txt[0].value){
+			codefund(0);
+		}else{
+			label[0].style.color="#FF6666";
+  			label[0].innerHTML="名称不能为空";
+		}
+	}
+	txt[1].onblur=function(){
+		if(txt[1].value){
+			codefund(1);
+		}else{
+			label[1].style.color="#FF6666";
+  			label[1].innerHTML="密码不能为空";
+		}
+	}
+	txt[2].onblur=function(){
+		if(txt[2].value){
+			if(txt[2].value==txt[1].value){
+				codefund(2);
+			}else{
+				label[2].style.color="#FF6666";
+  				label[2].innerHTML="密码不一致";
+			}
+		}else{
+			label[2].style.color="#FF6666";
+  			label[2].innerHTML="密码不能为空";
+		}
+	}
+	txt[3].onblur=function(){
+		var apos=txt[3].value.indexOf("@");
+		var dotpos=txt[3].value.lastIndexOf(".");
+		console.log(dotpos);
+		console.log(apos);
+		if(txt[3].value){
+			if(apos<1||dotpos-apos<2){
+				label[3].style.color="#FF6666";
+  				label[3].innerHTML="格式错误";	
+			}else{
+				label[3].style.color="#67BF7F";
+  				label[3].innerHTML="格式正确";
+			}
+		}else{
+			label[3].style.color="#FF6666";
+  			label[3].innerHTML="邮件不能为空";
+		}
+		 
+	}
+	txt[4].onblur=function(){
+		if(txt[4].value){
+			if((txt[4].value.length==11 || txt[4].value.length==8) && !isNaN(txt[4].value)){
+				label[4].style.color="#67BF7F";
+  				label[4].innerHTML="格式正确";
+			}else{
+				label[4].style.color="#FF6666";
+  				label[4].innerHTML="格式错误";
+			}
+		}else{
+			label[4].style.color="#FF6666";
+  			label[4].innerHTML="邮件不能为空";
+		}
+
+	}
+	/*for(var i=0;i<txt.length;i++){
+		(function(n){
+			txt[n].onblur=function(){
+				var a=n;
+				console.log(a);
+				find(a)
+			}
+		})(i);
+
+	}
+*/
+
+}
+
+</script>
+</body>

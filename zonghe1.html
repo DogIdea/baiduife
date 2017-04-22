@@ -1,0 +1,71 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+<meta charset="utf-8"></meta>  
+<style>
+form{
+	font-size: 12px;
+	font-weight: bold;
+}
+form input{
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+	height:28px;
+}
+form input[type="submit"]{
+	width:60px;
+	background:#205AA7;
+	color:#FFF;
+	border:1px solid #205AA7;
+}
+div{
+  margin:20px 20px;
+}
+</style>
+<script type="text/javascript">
+function validate_form()
+{
+var label=document.getElementById("Label1")
+var len=form.email.value.length;
+var sum=0;
+  	var codeval;
+  	for(var i=0;i<len;i++){
+  		codeval=form.email.value.charCodeAt(i);
+  		if (codeval>=0x00 && 0xFF>=codeval){
+        sum=sum+1;
+
+  		} 
+  		else
+  		{
+			       sum=sum+2;
+  		}
+  	}
+  	if(sum>3 && sum<17)
+  	{
+  		form.email.focus();
+      label.style.color="#67BF7F";
+  		label.innerHTML="格式正确"
+  		return false;
+  	}
+  else 
+  	 {
+  	 	form.email.focus();
+      label.style.color="#FF6666";
+  	 	label.innerHTML="格式错误"
+  	 	return false;
+  	 }
+}
+</script>
+</head>
+<body>
+<div>
+  <form name="form" onsubmit="return validate_form()">
+  用户名: <input type="text" name="email" size="30">
+  <input type="submit" value="验证">
+  </br>
+  <label id="Label1">必填，字符为4-16个字符</label>
+  </form>
+</div>
+</body>
+
+</html>

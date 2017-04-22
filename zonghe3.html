@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"></meta>  
+<style>
+body{
+	padding:0;
+	margin:0;
+	font-size:12px;
+	font-weight: bold;
+}
+div{
+	margin:20px auto;
+	width:50%;
+	height:200px;
+}
+form div:first-child{
+	justify-content:center;
+	display:flex;
+	height:40px;
+}
+form div{
+	height:40px;
+}
+form input[type="text"]{
+	width:200px;
+}
+
+form select{
+	margin-left:15px;
+	width:80px;
+	height:16px;
+	font-size:5px;
+}
+form div:last-child{
+	display:none;
+}
+</style>
+</head>
+<body>
+<div>
+	 <form>
+	 	<div>
+		 	<input id="1" type="radio" name="student" checked="checked">
+		 	<label for="1">在校生</label>
+		 	<input id="2" type="radio" name="student">
+		 	<label for="2">非在校生</label>
+	 	</div>
+	 	<div>
+	 		<label for="3">学校</label>
+	 		<select id="groups" name="groups">
+				    <option>北京</option>
+				    <option>上海</option>
+				    <option>南京</option>
+				    <option>杭州</option>
+			</select>
+	 		<select id="groups" name="groups">
+	 				<option>北京大学</option>
+				    <option>清华大学</option>
+				    <option>中国人民大学</option>
+				    <option>北京师范大学</option>
+			</select>
+	 	</div>
+	 	<div>
+	 		<label for="4">就业单位</label>
+	 		<input id="4" type="text">
+	 	</div>
+	 </form>
+</div>
+<script type="text/javascript">
+window.onload=function(){
+	var input=document.getElementsByTagName("input");
+	var div=document.getElementsByTagName("div");
+	var select=document.getElementsByTagName("select");
+	var obj = document.getElementsByTagName("select")[1];
+	input[0].onchange=function(){
+		div[2].style.display="block";
+		div[3].style.display="none";
+	}
+	input[1].onchange=function(){
+		div[2].style.display="none";
+		div[3].style.display="block";
+	}
+	select[0].onchange=function(){
+		school(select[0].value);
+	}
+	function school(a){
+		obj.options.length = 0;
+		switch(a){
+			case "北京":
+				obj.add(new Option("北京大学"));
+				obj.add(new Option("清华大学"));
+				obj.add(new Option("中国人民大学"));
+				obj.add(new Option("北京师范大学"));
+				break;
+			case "上海":
+				obj.add(new Option("复旦大学"));
+				obj.add(new Option("上海交通大学"));
+				obj.add(new Option("同济大学"));
+				obj.add(new Option("华东师范大学"));
+				break;
+			case "南京":
+				obj.add(new Option("南京大学"));
+				obj.add(new Option("东南大学"));
+				obj.add(new Option("中国药科大学"));
+				obj.add(new Option("河海大学"));
+				break;
+			case "杭州":
+				obj.add(new Option("浙江大学"));
+				obj.add(new Option("浙江工业大学"));
+				obj.add(new Option("杭州电子科技大学"));
+				obj.add(new Option("浙江工商大学"));
+				break;
+		}
+	}
+}
+</script>
+</body>
