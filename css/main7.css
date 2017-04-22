@@ -1,0 +1,113 @@
+.box{
+	width:100%;
+	
+}
+.box *{
+	box-sizing: border-box;
+}
+/*确保所有行全都再行内*/
+.row:before,
+.row:after{
+	content: "";
+	display: table-cell;
+	clear: both;
+}
+.outborder *{
+	  outline: 1px solid #999;
+}
+
+/*设置每个col的定位*/
+[class*='col-']{
+	float:left;
+	/*设置最小高度为50防止浮动叠堆*/
+	min-height: 50px;
+	width:8.33%;
+	background:#eee;
+}
+.col-1{
+
+    width: 8.33%; 
+}
+.col-2{
+    width: 16.66%; 
+}
+.col-3{
+    width: 25%; 
+}
+.col-4{
+    width: 33.33%;
+}
+.col-5{
+    width: 41.664%;
+}
+.col-6{
+    width: 50%;
+}
+.col-7{
+    width: 58.33%; 
+}
+.col-8{
+    width: 66.664%; 
+}
+.col-9{
+    width: 75%; 
+}
+.col-10{
+    width:83.33%;
+}
+.col-11{
+    width: 91.664%;
+}
+.col-12{
+    width: 100%;
+}
+@media all and (max-width: 768px){
+	.col-1{
+	    width: 16.66%; 
+	}
+	.col-2{
+	    width: 66.664%; 
+	}
+	.col-3{
+	    width: 25%; 
+	}
+	.col-4{
+	    width: 50%;
+	}
+	.col-5{
+	    width: 41.664%;
+	}
+	.col-6{
+	    width: 50%;
+	}
+	.col-7{
+	    width: 58.33%; 
+	}
+	.col-8{
+	    width: 66.664%; 
+	}
+	.col-9{
+	    width: 75%; 
+	}
+	.col-10{
+	    width:83.33%;
+	}
+	.col-11{
+	    width: 91.664%;
+	}
+	.col-12{
+	    width: 100%;
+	}
+	.row .col-4:last-of-type{
+            width: 100%; 
+    }
+    .row .col-6:last-of-type{
+		width: 25%;
+    }
+    .row .col-2+.col-2{
+    	width: 25%;
+    }
+    .row .col-11 ~ .col-1{
+            width: 100%; 
+    }
+}
