@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        body{
+            text-align: center;
+        }
+        #table{
+            /*position: absolute;*/
+            /*left: 50%;*/
+            margin: 0 auto;
+            border: solid 3px black;
+            border-collapse: collapse;
+            /*frame:lhs ;*/
+        }
+        #tablehead{
+            border:none;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        #tablehead td,#tableleft td{
+            height: 40px;
+            width: 40px;
+        }
+        #tableleft{
+            position: absolute;
+            margin-left: calc(50% - 260px);
+            border-collapse: collapse;
+        }
+        #table td{
+            border: solid 1px #676767;
+            height: 40px;
+            width: 40px;
+            padding: 0;
+        }
+        #buttons{
+            /*margin:0 auto;*/
+        }
+        .sex{
+            background-color: #FF0000;
+        }
+        #sexblue{
+            /*margin: 0px;*/
+            /*float: right;*/
+            margin-top: -20px;
+            /*margin-top: -20px;*/
+            background-color: blue;
+            position: absolute;
+            width: 40px;
+            height: 10px;
+        }
+    </style>
+</head>
+<body>
+<table id="tablehead">
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+        <td>10</td>
+    </tr>
+</table>
+<table id="tableleft">
+    <tr>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>6</td>
+    </tr>
+    <tr>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>8</td>
+    </tr>
+    <tr>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>10</td>
+    </tr>
+
+</table>
+<table id="table" >
+    <tbody id="tbody">
+    </tbody>
+</table>
+<div id="buttons">
+    <button id="start" >start</button>
+    <button id="go" >go</button>
+    <button id="left">left</button>
+    <button id="right">right</button>
+    <button id="back">back</button>
+</div>
+
+<script type="text/javascript">
+    function start() {
+        init();
+        var sexnode = document.getElementById("td55");
+        sexnode.className = "sex";
+        str = "<div id = 'sexblue'></div>";
+        sexnode.innerHTML = str;
+    }
+    function go() {
+        var bluenode = document.getElementById("sexblue");
+        console.log(bluenode.parentNode.id);
+        var address = bluenode.parentNode.id.substring(2);
+        var row = 0;
+        var col = 0;
+        if (address.length == 4){
+            row = 10;
+            col = 10;
+        }else if(address.length == 3){
+            if (address[0] == 1){
+                row = 10;
+                col = address.substring(2);
+            }else{
+                row = address[0];
+                col = 10;
+            }
+        }else{
+            row = address[0];
+            col = address[1];
+        }
+        if (to == "top"){
+            row =row * 1;
+            row = row -1;
+        }else if(to == "buttom"){
+            // 这是为了把row字符串当成数字，要不然4 +1 会被当成41的。
+            row =row * 1;
+            row = row + 1;
+        }else if(to == "left"){
+            col = col *1;
+            col = col - 1;
+        }else if (to == "right"){
+            // 有问题
+            col = col *1;
+            col = col + 1;
+        }
+        var parent = document.getElementById(bluenode.parentNode.id);
+        parent.className = "";
+        var nextparent = document.getElementById("td"+ row + col);
+        nextparent.innerHTML = bluenode.parentNode.innerHTML;
+        bluenode.parentNode.innerHTML = "";
+        nextparent.className = "sex";
+    }
+    function left() {
+        var bluenode = document.getElementById("sexblue");
+        if (to == "top"){
+            bluenode.style.height = "40px";
+            bluenode.style.width = "10px";
+            to = "left";
+        }else if(to == "buttom"){
+//            bluenode.style.marginTop = "-20px";
+            bluenode.style.height = "40px";
+            bluenode.style.width = "10px";
+            bluenode.style.marginLeft = "30px";
+            bluenode.style.marginTop = "-20px";
+            to = "right";
+        }else if(to == "left"){
+//            bluenode.style.marginLeft = "30px";
+            bluenode.style.height = "10px";
+            bluenode.style.width = "40px";
+            bluenode.style.marginTop = "10px";
+            to = "buttom";
+        }else if (to == "right"){
+            bluenode.style.marginLeft = "0";
+            bluenode.style.height = "10px";
+            bluenode.style.width = "40px";
+            to = "top";
+        }
+        console.log(to);
+    }
+    function right() {
+        var bluenode = document.getElementById("sexblue");
+        if (to == "top"){
+            bluenode.style.height = "40px";
+            bluenode.style.width = "10px";
+            bluenode.style.marginLeft = "30px";
+            to = "right";
+        }else if(to == "buttom"){
+            bluenode.style.height = "40px";
+            bluenode.style.width = "10px";
+            bluenode.style.marginTop = "-20px";
+            to = "left";
+        }else if(to == "left"){
+            bluenode.style.height = "10px";
+            bluenode.style.width = "40px";
+            to = "top";
+        }else if (to == "right"){
+            bluenode.style.marginLeft = "0";
+            bluenode.style.marginTop = "10px";
+            bluenode.style.height = "10px";
+            bluenode.style.width = "40px";
+            to = "buttom";
+        }
+        console.log(to);
+    }
+    function back() {
+        var bluenode = document.getElementById("sexblue");
+        if (to == "top"){
+            bluenode.style.marginTop = "10px";
+            to = "buttom";
+        }else if(to == "buttom"){
+            bluenode.style.marginTop = "-20px";
+            to = "top";
+        }else if(to == "left"){
+            bluenode.style.marginLeft = "30px";
+            to = "right";
+        }else if (to == "right"){
+            bluenode.style.marginLeft = "0";
+            to = "left";
+        }
+        console.log(to);
+    }
+    // 制作一个棋盘 10 乘以10
+    function init() {
+        to = "top";
+        var tableList = document.getElementById("tbody");
+        tableList.innerHTML = "";
+        for(i=1;i<11;i++){
+            var td = document.createElement("tr");
+            for(j=1;j<11;j++){
+                var one = document.createElement("td");
+                one.id = "td" + i + j ;
+                one.innerHTML = "";
+                td.appendChild(one);
+            }
+            tableList.appendChild(td);
+        }
+        //        第一个按钮start
+        var btnstart = document.getElementById("start");
+        btnstart.onclick = function () {
+            start();
+        };
+        //        第二个按钮go
+        var btngo = document.getElementById("go");
+        btngo.onclick = function () {
+            go();
+        };
+        // 第三个按钮turn right
+        var btnleft = document.getElementById("left");
+        btnleft.onclick = function () {
+            left();
+        };
+        // 第四个按钮turn right
+        var btnright = document.getElementById("right");
+        btnright.onclick = function () {
+          right();
+        };
+        // 第五个按钮turn back
+        var btnback = document.getElementById("back");
+        btnback.onclick = function () {
+            back();
+        }
+    }
+    init()
+</script>
+</body>
+</html>
