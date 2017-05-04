@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"></meta>  
+<style>
+body{
+	text-align: center;
+}
+*{
+	box-sizing: border-box;
+	}
+table tr td{
+	border:1px solid;
+	width:50px;
+	height:50px;
+	text-align: center;
+}
+input[type="button"]{
+	width:50px;
+	height:25px;
+}
+table{
+	border-collapse:collapse;
+	margin:10px auto;
+	position: relative;
+}
+#block{
+	width:50px;
+	height:50px;
+	background: red;
+	position: absolute;
+	top: 150px; left: 150px;
+    transform: rotate(0deg);
+    transition: all 1s;
+}
+#blue{
+	width:50px;
+	height:10px;
+	background:blue;
+}
+</style>
+</head>
+<body>
+<table>
+<tr>
+	<td></td>
+	<td>1</td>
+	<td>2</td>
+	<td>3</td>
+	<td>4</td>
+	<td>5</td>
+	<td>6</td>
+	<td>7</td>
+	<td>8</td>
+	<td>9</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>1</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td>
+		<div id="block">
+			<div id="blue"></div>
+    	</div>
+    </td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>2</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>3</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>4</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>5</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>6</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>7</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>8</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>9</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>10</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+</table>
+<div>
+	<input type="text" id="text"></input>
+	<input type="button" id="button" value="Go"></input>
+</div>
+<script type="text/javascript">
+var input=document.getElementById("text");
+var button=document.getElementById("button");
+var block=document.getElementById("block")
+var deg=block.style.transform;
+var tdeg=0;
+var Left=3
+var Top=3
+function chose(a){
+
+	if(!block.style.transform==""){
+		if(deg>0){
+			/*console.log(deg,"1")*/
+			deg=Number(block.style.transform.match(/\d+/)[0]);
+		}else{
+			/*console.log(deg,"2")*/
+			deg=-Number(block.style.transform.match(/\d+/)[0]);
+		}		
+	}
+	switch(a){
+		case "L":
+			if(deg==-180){
+				deg=90
+				block.style.transform="rotate("+deg+"deg)";
+			}else if(deg==270){
+				deg=180
+				block.style.transform="rotate("+deg+"deg)";
+			}else{
+				deg=deg-90
+				block.style.transform="rotate("+deg+"deg)";
+			}
+			break;
+		case "R":
+		if(deg==180){
+			deg=-90
+			block.style.transform="rotate("+deg+"deg)";
+		}else if(deg==270){
+			deg=0
+			block.style.transform="rotate("+deg+"deg)";
+		}else{
+			deg=deg+90;
+			block.style.transform="rotate("+deg+"deg)";	
+		}
+			break;
+		case "B":
+			if(deg==180){
+				deg=0
+				block.style.transform="rotate("+deg+"deg)";
+			}else if(deg==270){
+				deg=90
+				block.style.transform="rotate("+deg+"deg)";
+			}else{
+				deg=deg+180
+				block.style.transform="rotate("+deg+"deg)";
+			}
+			break;
+
+	}
+	return deg;
+}
+function go(a){
+	var y = block.offsetTop;
+	var x = block.offsetLeft;
+	if(!a){
+		switch(Number(tdeg)){
+			case 0:
+			console.log(tdeg);
+			if(Top==1){
+					alert("已到边界")
+			}else{
+				console.log(block.style.top=(y-50)+"px");
+				Top=Top-1;
+			}
+			break;
+			case 90:
+			console.log(tdeg);
+			if(Left==10){
+					alert("已到边界")
+			}else{
+				console.log(block.style.left=(x+50)+"px");
+				Left=Left+1
+			}
+			break;
+			case 180:
+			console.log(tdeg);
+			if(Top==10){
+				alert("已到边界")
+			}else{
+				console.log(block.style.top=(y+50)+"px");
+				Top=Top+1
+			}	
+			break;
+			case -90: 
+			console.log(tdeg);
+			if(Left==1){
+					alert("已到边界")
+			}else{
+				console.log(block.style.left=(x-50)+"px");
+				Left=Left-1
+			}	
+			break;
+			case 270: 
+			console.log(tdeg);
+			if(Left==1){
+				alert("已到边界")
+			}else{
+				console.log(block.style.left=(x-50)+"px");
+				Left=Left-1
+			}	
+			break;
+		}
+	}else{
+		tdeg=chose(a);
+	}
+}
+window.onload=function(){
+	button.addEventListener("click",function(){
+	var txt=input.value;
+	go(txt);
+	
+	});
+}
+
+</script>
+</body>

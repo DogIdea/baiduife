@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"></meta>  
+<style>
+body{
+	text-align: center;
+}
+p{
+	display:block;
+	float:left;
+}
+*{
+	box-sizing: border-box;
+	}
+table tr td{
+	border:1px solid;
+	width:50px;
+	height:50px;
+	text-align: center;
+}
+input[type="button"]{
+	width:50px;
+	height:25px;
+}
+table{
+	border-collapse:collapse;
+	margin:10px auto;
+	position: relative;
+}
+#block{
+	width:50px;
+	height:50px;
+	background: red;
+	position: absolute;
+	top: 150px; left: 150px;
+    transform: rotate(0deg);
+    transition: all 1s;
+}
+#blue{
+	width:50px;
+	height:10px;
+	background:blue;
+}
+</style>
+</head>
+<body>
+<p>
+GO</br>
+TUN LEF</br>
+TUN RIG</br>
+TUN BAC</br>
+TRA LEF：向屏幕的左侧移动一格，方向不变</br>
+TRA TOP：向屏幕的上面移动一格，方向不变</br>
+TRA RIG：向屏幕的右侧移动一格，方向不变</br>
+TRA BOT：向屏幕的下面移动一格，方向不变</br>
+MOV LEF：方向转向屏幕左侧，并向屏幕的左侧移动一格</br>
+MOV TOP：方向转向屏幕上面，向屏幕的上面移动一格</br>
+MOV RIG：方向转向屏幕右侧，向屏幕的右侧移动一格</br>
+MOV BOT：方向转向屏幕下面，向屏幕的下面移动一格</br>
+</p>
+<table>
+<tr>
+	<td></td>
+	<td>1</td>
+	<td>2</td>
+	<td>3</td>
+	<td>4</td>
+	<td>5</td>
+	<td>6</td>
+	<td>7</td>
+	<td>8</td>
+	<td>9</td>
+	<td>10</td>
+</tr>
+<tr>
+	<td>1</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td>
+		<div id="block">
+			<div id="blue"></div>
+    	</div>
+    </td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>2</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>3</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>4</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>5</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>6</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>7</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>8</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>9</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<tr>
+	<td>10</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+</table>
+<div>
+	<input type="text" id="text"></input>
+	<input type="button" id="button" value="Go"></input>
+</div>
+<script type="text/javascript">
+var Top=3;
+var Left=3;
+function init() {
+	var input=document.getElementById("text");
+	var button=document.getElementById("button");
+	var block=document.getElementById("block");
+	var i=0;//通过取余数来获得方向标志
+	
+	button.addEventListener("click",function(){
+		var txt=input.value.toUpperCase();
+		switch(txt){
+			case "TUN LEF":
+				i--
+				block.style.transform="rotate("+90*i+"deg)";
+				break;
+			case "TUN RIG":
+				i++
+				block.style.transform="rotate("+90*i+"deg)";
+				break;
+			case "TUN BAC": 
+				i-=2 
+				block.style.transform="rotate("+90*i+"deg)";
+				break;
+			case 'GO':
+				var	chose=Math.abs(i%4);
+				var y = block.offsetTop;
+				var x = block.offsetLeft;
+				switch(chose){
+					case 0:
+						if(Top==1){
+								alert("已到边界")
+						}else{
+								console.log(block.style.top=(y-50)+"px");
+								Top=Top-1;
+						}
+					break;
+					case 1:
+						if(Left==10){
+								alert("已到边界")
+						}else{
+							console.log(block.style.left=(x+50)+"px");
+							Left=Left+1
+						}
+						break;	
+					case 2:
+						if(Top==10){
+							alert("已到边界")
+						}else{
+							console.log(block.style.top=(y+50)+"px");
+							Top=Top+1
+						}
+					
+					break;
+					case 3:
+						if(Left==1){
+								alert("已到边界")
+						}else{
+							console.log(block.style.left=(x-50)+"px");
+							Left=Left-1
+						}
+						break;
+				}				
+				break;
+				case "TRA LEF":
+					var x = block.offsetLeft;
+					block.style.left=(x-50)+"px";
+				break;
+				case "TRA TOP":
+					var y = block.offsetTop;
+					block.style.top=(y-50)+"px";
+				break;
+				case "TRA RIG":
+					var x = block.offsetLeft;
+					block.style.left=(x+50)+"px";
+				break;
+				case "TRA BOT":
+					var y = block.offsetTop;
+					block.style.top=(y+50)+"px";
+				break;
+				case "MOV LEF":
+					var x = block.offsetLeft;
+					block.style.transform="rotate("+-90+"deg)";
+					setTimeout(function(){
+						block.style.left=(x-50)+"px"
+					},1000)
+					
+			    break;
+				case "MOV RIG":
+					var x = block.offsetLeft;
+					block.style.transform="rotate("+90+"deg)";
+					setTimeout(function(){
+						block.style.left=(x+50)+"px";
+					},1000)
+				break;
+				case "MOV TOP":
+					var y = block.offsetTop;
+					block.style.transform="rotate("+0+"deg)";
+					setTimeout(function(){
+						block.style.top=(y-50)+"px";
+					},1000)					
+				break;
+				case "MOV BOT":
+					var y = block.offsetTop;
+					block.style.transform="rotate("+180+"deg)";
+					setTimeout(function(){
+						block.style.top=(y+50)+"px";
+					},1000)		
+					
+				break;
+		}
+	})
+}
+init();
+</script>
+</body>
