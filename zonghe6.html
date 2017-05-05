@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"></meta>  
+<style>
+body,html{
+	height:100%;
+}
+
+*{
+	font-family:微软雅黑;
+	margin:0;
+	padding:0;
+	font-size:12px;
+	color:#000;
+}
+div{
+	height:100%;
+	width:100%;
+	text-align: center;
+}
+#zhezhao{
+	position: fixed;
+	width: 100%;
+	top:0;
+	left:0;
+	z-index:1;	
+	background:black;
+	opacity: .2;
+	filter: alpha(opacity = 20);
+}
+#a{
+	margin: 0 auto;
+	position: relative;
+	top:50px;
+	z-index:2;
+	background-color:#eeeeee;
+	border:1px solid #aaaaaa;
+	width:400px;
+	height:200px;
+}
+#d{
+	width:auto;
+	padding-left:20px;
+	text-align: left;
+	line-height:50px;
+	height:50px;
+	background:#aaaaaa;
+}
+#p{
+	margin-top:20px;
+	padding-left:20px;
+	float:left;
+	display:block;
+	font-size:16px;
+}
+input[type="button"]{
+	margin-top:100px;
+	margin-left:20px;
+	width:50px;
+	height:25px;
+}
+#button{
+	background-color:#eeeeee;
+	border:1px solid #aaaaaa;
+	margin:50px auto;
+	width:100px;
+	height:50px;
+}
+</style>
+</head>
+<body>
+<div>
+<input type="button" id="button" value="弹出窗口"></input>
+</div>
+<script type="text/javascript">
+var button=document.getElementById("button");
+var div=document.getElementsByTagName("div")[0];
+window.onload=function(){
+	button.addEventListener("click",function(){
+		creat();
+	})	
+	function drag(){
+	   var oTitle=getById(div,"a");
+	   // 拖曳
+	   oTitle.onmousedown=fnDown;
+	}
+	function fnDown(event){
+	  event = event || window.event;
+	  var oDrag=document.getElementById('a'),
+	      // 光标按下时光标和面板之间的距离
+	      disX=event.clientX-oDrag.offsetLeft,
+	      disY=event.clientY-oDrag.offsetTop;
+	  // 移动
+	  document.onmousemove=function(event){
+	  	event = event || window.event;
+	  	fnMove(event,disX,disY);
+	  }
+	  // 释放鼠标
+	  document.onmouseup=function(){
+	  	document.onmousemove=null;
+	  	document.onmouseup=null;
+	  }
+}
+}
+function creat(){
+		var zhezhao=document.createElement("div");
+		div.appendChild(zhezhao);
+		zhezhao.id="zhezhao";	
+		var H= document.documentElement.scrollHeight;	
+		zhezhao.style.height=H+"px";
+		
+
+		var a=document.createElement("div");
+		div.appendChild(a);
+		a.id="a";
+
+		var d=document.createElement("div");
+		a.appendChild(d);
+		d.id="d";
+		d.innerHTML="这是一个弹框";
+
+		var p=document.createElement("p");
+		a.appendChild(p);
+		p.id="p";
+		p.innerHTML="这是一个弹框";
+
+		var b1=document.createElement("input")
+		a.appendChild(b1);
+		b1.type="button";
+		b1.value="确定";
+
+		var b2=document.createElement("input")
+		a.appendChild(b2);
+		b2.type="button";
+		b2.value="取消";
+
+		turnoff(b1,zhezhao,a);
+		turnoff(b2,zhezhao,a);
+		turnoff(zhezhao,zhezhao,a)
+}
+function turnoff(element,event1,event2){
+	element.addEventListener("click",function(){
+		div.removeChild(event1);
+		div.removeChild(event2);
+	})
+}
+
+function fnMove(e,posX,posY){
+  var oDrag=document.getElementById('a'),
+      l=e.clientX-posX,
+      t=e.clientY-posY,
+      winW=document.documentElement.clientWidth || document.body.clientWidth,
+      winH=document.documentElement.clientHeight || document.body.clientHeight,
+      maxW=winW-oDrag.offsetWidth-10,
+      maxH=winH-oDrag.offsetHeight;
+  if(l<0){
+    l=0;
+  }else if(l>maxW){
+    l=maxW;
+  }
+  if(t<0){
+    t=10;
+  }else if(t>maxH){
+    t=maxH;
+  }
+  oDrag.style.left=l+'px';
+  oDrag.style.top=t+'px';
+}
+</script>
+</body>
+</html>
