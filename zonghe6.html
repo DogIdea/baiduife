@@ -30,9 +30,10 @@ div{
 	filter: alpha(opacity = 20);
 }
 #a{
-	margin: 0 auto;
-	position: relative;
+	position: absolute;
 	top:50px;
+	left:50%;
+	margin-left:-200px;
 	z-index:2;
 	background-color:#eeeeee;
 	border:1px solid #aaaaaa;
@@ -80,28 +81,7 @@ window.onload=function(){
 	button.addEventListener("click",function(){
 		creat();
 	})	
-	function drag(){
-	   var oTitle=getById(div,"a");
-	   // 拖曳
-	   oTitle.onmousedown=fnDown;
-	}
-	function fnDown(event){
-	  event = event || window.event;
-	  var oDrag=document.getElementById('a'),
-	      // 光标按下时光标和面板之间的距离
-	      disX=event.clientX-oDrag.offsetLeft,
-	      disY=event.clientY-oDrag.offsetTop;
-	  // 移动
-	  document.onmousemove=function(event){
-	  	event = event || window.event;
-	  	fnMove(event,disX,disY);
-	  }
-	  // 释放鼠标
-	  document.onmouseup=function(){
-	  	document.onmousemove=null;
-	  	document.onmouseup=null;
-	  }
-}
+
 }
 function creat(){
 		var zhezhao=document.createElement("div");
@@ -138,6 +118,25 @@ function creat(){
 		turnoff(b1,zhezhao,a);
 		turnoff(b2,zhezhao,a);
 		turnoff(zhezhao,zhezhao,a)
+
+		a.onmousedown=fnDown;
+		function fnDown(event){
+		  event = event || window.event;
+		  var oDrag=document.getElementById('a'),
+		      // 光标按下时光标和面板之间的距离
+		      disX=event.clientX-oDrag.offsetLeft,
+		      disY=event.clientY-oDrag.offsetTop;
+		  // 移动
+		  document.onmousemove=function(event){
+		  	event = event || window.event;
+		  	fnMove(event,disX,disY);
+		  }
+		  // 释放鼠标
+		  document.onmouseup=function(){
+		  	document.onmousemove=null;
+		  	document.onmouseup=null;
+		  }
+		}
 }
 function turnoff(element,event1,event2){
 	element.addEventListener("click",function(){
@@ -147,10 +146,10 @@ function turnoff(element,event1,event2){
 }
 
 function fnMove(e,posX,posY){
-  var oDrag=document.getElementById('a'),
-      l=e.clientX-posX,
-      t=e.clientY-posY,
-      winW=document.documentElement.clientWidth || document.body.clientWidth,
+  var oDrag=document.getElementById('a');
+  var l=e.clientX-posX+200;
+  var t=e.clientY-posY;
+    /*  winW=document.documentElement.clientWidth || document.body.clientWidth,
       winH=document.documentElement.clientHeight || document.body.clientHeight,
       maxW=winW-oDrag.offsetWidth-10,
       maxH=winH-oDrag.offsetHeight;
@@ -163,9 +162,9 @@ function fnMove(e,posX,posY){
     t=10;
   }else if(t>maxH){
     t=maxH;
-  }
-  oDrag.style.left=l+'px';
-  oDrag.style.top=t+'px';
+  }*/
+  oDrag.style.left=l+"px";
+  oDrag.style.top=t+"px";
 }
 </script>
 </body>
