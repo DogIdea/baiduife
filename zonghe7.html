@@ -15,10 +15,12 @@ table{
 	border-collapse:collapse;
 	border:1px solid black;
 }
-table tr:first-child td{
+table tr:first-child th{
 	position: relative;
 	background:#333;
 	color:#FFF;
+	height:30px;
+	width:100px;
 }
 
 td{
@@ -27,10 +29,10 @@ td{
 	text-align: center;
 	border:1px solid black;
 }
-td div{
+th div{
 	cursor:pointer;
 }
-td .down{
+th .down{
 		width:0;
 		height:0;
 		border-width: 5px;
@@ -41,7 +43,7 @@ td .down{
 		right:5px;
 }
 /*三角形div*/
-td .up{
+th .up{
 		width:0;
 		height:0;
 		border-width: 5px;
@@ -55,27 +57,27 @@ td .up{
 <body>
 <table>
 <tr>
-	<td>姓名</td>
-	<td>语文<div class="down"></div><div class="up"></div></td>
-	<td>数学<div class="down"></div><div class="up"></div></td>
-	<td>英语<div class="down"></div><div class="up"></div></td>
-	<td>历史<div class="down"></div><div class="up"></div></td>
+	<th>姓名</th>
+	<th>语文<div class="down chinless"></div><div class="up chinless"></div></th>
+	<th>数学<div class="down mathless"></div><div class="up mathless"></div></th>
+	<th>英语<div class="down englless"></div><div class="up englless"></div></th>
+	<th>历史<div class="down histless"></div><div class="up histless"></div></th>
 </tr>
-<tr>
+<tr class="stu">
 	<td>小明</td>
 	<td>60</td>
 	<td>85</td>
 	<td>76</td>
 	<td>90</td>
 </tr>
-<tr>
+<tr class="stu">
 	<td>小红</td>
 	<td>71</td>
 	<td>92</td>
 	<td>82</td>
 	<td>100</td>
 </tr>
-<tr>
+<tr class="stu">
 	<td>小刚</td>
 	<td>98</td>
 	<td>55</td>
@@ -91,8 +93,7 @@ window.onload=function(){
 		var target = event.target;
 		var classNameList = target.classList;
 		var listName = ["stuName","chinless","mathless","englless","histless"];
-		console.log(target)
-		var trObj = document.getElementsByTagName("td")
+		var trObj = document.getElementsByClassName("stu");
         var tr = Array.prototype.slice.call(trObj,0);
         var len = tr.length;
         for(var clickIndex =0, clickLength=listName.length; clickIndex<clickLength; clickIndex++){
@@ -105,16 +106,16 @@ window.onload=function(){
                 table.appendChild(tr[j]);
         }
         function sortClick(index){
-            if( classNameList.contains("down") ){
-                tr.sort(function(ele1,ele2){
-                    var grade1 = Number(ele1.getElementsByTagName("td")[index].textContent);
-                    var grade2 = Number(ele2.getElementsByTagName("td")[index].textContent);
-                    return grade1 - grade2;});
-            } else {
-                tr.sort(function(ele1,ele2){
+            if( classNameList.contains("up") ){
+            	tr.sort(function(ele1,ele2){
                     var grade1 = Number(ele1.getElementsByTagName("td")[index].textContent);
                     var grade2 = Number(ele2.getElementsByTagName("td")[index].textContent);
                     return grade2 - grade1;});
+            } else {
+                    tr.sort(function(ele1,ele2){
+                    var grade1 = Number(ele1.getElementsByTagName("td")[index].textContent);
+                    var grade2 = Number(ele2.getElementsByTagName("td")[index].textContent);
+                    return grade1 - grade2;});
             }
         }
 
