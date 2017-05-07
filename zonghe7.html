@@ -1,0 +1,125 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+<meta charset="utf-8"></meta>  
+</head>
+<style>
+*{
+	padding:0;
+	margin:0;
+	font-size: 12px;
+	font-family:微软雅黑;
+}
+table{
+	margin:15px auto;
+	border-collapse:collapse;
+	border:1px solid black;
+}
+table tr:first-child td{
+	position: relative;
+	background:#333;
+	color:#FFF;
+}
+
+td{
+	height:30px;
+	width:100px;
+	text-align: center;
+	border:1px solid black;
+}
+td div{
+	cursor:pointer;
+}
+td .down{
+		width:0;
+		height:0;
+		border-width: 5px;
+		border-style: solid;
+		border-color:#fff #333 #333;
+		position:absolute;
+		bottom:3px;
+		right:5px;
+}
+/*三角形div*/
+td .up{
+		width:0;
+		height:0;
+		border-width: 5px;
+		border-style: solid;
+		border-color:#333 #333 #fff;
+		position:absolute;
+		top:3px;
+		right:5px;
+}
+</style>
+<body>
+<table>
+<tr>
+	<td>姓名</td>
+	<td>语文<div class="down"></div><div class="up"></div></td>
+	<td>数学<div class="down"></div><div class="up"></div></td>
+	<td>英语<div class="down"></div><div class="up"></div></td>
+	<td>历史<div class="down"></div><div class="up"></div></td>
+</tr>
+<tr>
+	<td>小明</td>
+	<td>60</td>
+	<td>85</td>
+	<td>76</td>
+	<td>90</td>
+</tr>
+<tr>
+	<td>小红</td>
+	<td>71</td>
+	<td>92</td>
+	<td>82</td>
+	<td>100</td>
+</tr>
+<tr>
+	<td>小刚</td>
+	<td>98</td>
+	<td>55</td>
+	<td>100</td>
+	<td>89</td>
+</tr>
+</table>
+<script type="text/javascript">
+var table=document.getElementsByTagName("table")[0];
+window.onload=function(){
+	table.addEventListener("click",function(event){
+		var event=event || window.event;
+		var target = event.target;
+		var classNameList = target.classList;
+		var listName = ["stuName","chinless","mathless","englless","histless"];
+		console.log(target)
+		var trObj = document.getElementsByTagName("td")
+        var tr = Array.prototype.slice.call(trObj,0);
+        var len = tr.length;
+        for(var clickIndex =0, clickLength=listName.length; clickIndex<clickLength; clickIndex++){
+                if(classNameList.contains(listName[clickIndex])){
+                    sortClick(clickIndex);
+                    break;
+                }
+        }
+        for(var j=0; j<len; j++){
+                table.appendChild(tr[j]);
+        }
+        function sortClick(index){
+            if( classNameList.contains("down") ){
+                tr.sort(function(ele1,ele2){
+                    var grade1 = Number(ele1.getElementsByTagName("td")[index].textContent);
+                    var grade2 = Number(ele2.getElementsByTagName("td")[index].textContent);
+                    return grade1 - grade2;});
+            } else {
+                tr.sort(function(ele1,ele2){
+                    var grade1 = Number(ele1.getElementsByTagName("td")[index].textContent);
+                    var grade2 = Number(ele2.getElementsByTagName("td")[index].textContent);
+                    return grade2 - grade1;});
+            }
+        }
+
+	})
+}
+</script>
+</body>
+</html>
