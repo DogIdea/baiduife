@@ -1,6 +1,7 @@
 <!DOCTYPE html>  
 <html lang="en">
 <head> 
+<meta charset="utf-8"></meta>  
 </head>
 <body>
 <script type="text/javascript">
@@ -9,33 +10,28 @@ function Observer(data) {
     this.data = data;
     this.walk(data)
 }
-let p = Observer.prototype;
-
-// 此函数用于深层次遍历对象的各个属性
-// 采用的是递归的思路
-// 因为我们要为对象的每一个属性绑定getter和setter
-p.walk = function (obj) {
+Observer.prototype={
+    //用于递归遍历各个属性
+    walk:function(obj) {
     let val;
     for (let key in obj) {
-        // 这里为什么要用hasOwnProperty进行过滤呢？
-        // 因为for...in 循环会把对象原型链上的所有可枚举属性都循环出来
-        // 而我们想要的仅仅是这个对象本身拥有的属性，所以要这么做。
+        //使用hasOwnProperty对遍历出来的原形链上所有可枚举的属性进行筛选
         if (obj.hasOwnProperty(key)) {
             val = obj[key];
-
-            // 这里进行判断，如果还没有遍历到最底层，继续new Observer
+            //这里进行判断如果没有遍历到最底层继续newObserver
             if (typeof val === 'object') {
                 new Observer(val);
-            }
+                    }
 
-            this.convert(key, val);
-        }
-    }
-};
-p.convert = function (key, val) {
+                    this.convert(key, val);
+                }
+            }
+        },
+    //defineProperty用于设定属性特性或新建具有某种特性的属性 ，给每一个属性都绑定上属于自己的get和set。不知道这样理解对不对
+    convert: function (key, val) {
     Object.defineProperty(this.data, key, {
-        enumerable: true,
-        configurable: true,
+        enumerable: true, //可枚举
+        configurable: true,//可配置
         get: function () {
             console.log('你访问了' + key);
             return val
@@ -47,8 +43,8 @@ p.convert = function (key, val) {
             val = newVal
         }
     })
-};
-
+    }
+}
 let data = {
     user: {
         name: "liangshaofeng",
