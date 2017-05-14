@@ -1,0 +1,99 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head> 
+<meta charset="utf-8"></meta>  
+</head>
+<body>
+<script type="text/javascript">
+function Event(){
+    this.events = {};
+}
+let eventprototype = Event.prototype;
+    eventprototype.on=function(attr, callback){
+        if (this.events[attr]) {
+            this.events[attr].push(callback);
+        } else {
+            this.events[attr] = [callback];
+        }
+
+    }
+    eventprototype.off=function(attr){
+        for (let key in this.events) {
+        if (this.events.hasOwnProperty(key) && key === attr) {
+            delete this.events[key];
+            }
+        }
+    }
+    eventprototype.emit=function(attr, ...arg){
+         this.events[attr] && this.events[attr].forEach(function(item) {
+            item(...arg);
+        })
+    }
+function Observer(data) {
+    this.data = data;
+    this.walk(data);
+    this.events=new Event();
+}
+let obserprototype=Observer.prototype;
+    //用于递归遍历各个属性
+    obserprototype.walk=function(obj) {
+    let val;
+    for (let key in obj) {
+        //使用hasOwnProperty对遍历出来的原形链上所有可枚举的属性进行筛选
+        if (obj.hasOwnProperty(key)) {
+            val = obj[key];
+            //这里进行判断如果没有遍历到最底层继续newObserver
+            if (typeof val === 'object') {
+                new Observer(val);
+                    }
+                }
+                this.convert(key, val);
+            }
+        }
+    //defineProperty用于设定属性特性或新建具有某种特性的属性 ，给每一个属性都绑定上属于自己的get和set。不知道这样理解对不对
+    obserprototype.convert= function (key, val) {
+    Object.defineProperty(this.data, key, {
+        enumerable: true, //可枚举
+        configurable: true,//可配置
+        get: function () {
+            console.log('你访问了' + key);
+            return val
+        },
+        set: function (newVal) {
+            console.log('你设置了' + key);
+            console.log('新的' + key + ' = ' + newVal)
+            if (newVal === val) return;
+            val = newVal;
+            if (typeof newVal === 'object') {
+                new Observer(newVal);
+            }
+        }
+    })
+    }
+    obserprototype.$watch=function (attr, callback) {
+        this.events.on(attr, callback);
+    };
+let data = {
+    user: {
+        name: {
+        lastName: 'liang',
+        firstName: 'shaofeng'
+         },
+        age: "24"
+    },
+    address: {
+        city: "beijing"
+    }
+};
+
+let app = new Observer(data);
+app.data.user.name = {
+    lastName: 'liang',
+    firstName: 'shaofeng'
+};
+app.$watch('age',function(age){
+    console.log(`我的年纪变了，现在已经是：${age}岁了`)
+});
+</script>
+</body>
+</html>
