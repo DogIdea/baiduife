@@ -21,10 +21,9 @@ Observer.prototype={
             //这里进行判断如果没有遍历到最底层继续newObserver
             if (typeof val === 'object') {
                 new Observer(val);
-                    }
-
-                    this.convert(key, val);
+                    }  
                 }
+                this.convert(key, val);
             }
         },
     //defineProperty用于设定属性特性或新建具有某种特性的属性 ，给每一个属性都绑定上属于自己的get和set。不知道这样理解对不对
@@ -48,7 +47,10 @@ Observer.prototype={
 let data = {
     user: {
         name: "liangshaofeng",
-        age: "24"
+        age: "24",
+        number:{
+            one:"1",
+        }
     },
     address: {
         city: "beijing"
